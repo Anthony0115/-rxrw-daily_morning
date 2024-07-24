@@ -24,11 +24,11 @@ def get_weather1():
   weather = res['data']['list'][0]
   return weather['weather'], math.floor(weather['temp'])
 def get_weather():
-    app_id = 'xxxxxxxx'  # 你的 appId
-    app_secret = 'xxxxxxxx'  # 你的 appSecret
+    app_id = '76955423'  # 你的 appId
+    app_secret = 'xRnKSP2r'  # 你的 appSecret
     city_id = '101220501'  # 马鞍山的城市 ID
 
-    url = f"http://v1.yiketianqi.com/free/day?appid={76955423}&appsecret={xRnKSP2r}&unescape=1&cityid={101220501}"
+    url = f"http://v1.yiketianqi.com/free/day??appid={app_id}&appsecret={app_secret}&unescape=1&cityid={city_id}"
 
     try:
         response = requests.get(url)
