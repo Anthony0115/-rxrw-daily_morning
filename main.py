@@ -19,7 +19,7 @@ template_id = os.environ["TEMPLATE_ID"]
 
 
 def get_weather():
-  url = "http://v1.yiketianqi.com/free/day?appid=${76955423}&appsecret=${76955423}&unescape=1&cityid=${101220501}"
+  url = "http://v1.yiketianqi.com/api?unescape=1&version=v91&appid=&{76955423}appsecret=${xRnKSP2r}&unescape=1&cityid=${101220501}"
   res = requests.get(url).json()
   weather = res['data']['list'][0]
   return weather['weather'], math.floor(weather['temp'])
