@@ -23,30 +23,7 @@ def get_weather1():
   res = requests.get(url).json()
   weather = res['data']['list'][0]
   return weather['weather'], math.floor(weather['temp'])
-def get_weather():
-    app_id = '76955423'  # 你的 appId
-    app_secret = 'xRnKSP2r'  # 你的 appSecret
-    city_id = '101220501'  # 马鞍山的城市 ID
 
-    url = f"http://v1.yiketianqi.com/free/day??appid={app_id}&appsecret={app_secret}&unescape=1&cityid={city_id}"
-
-    try:
-        response = requests.get(url)
-        response.raise_for_status()  # 检查请求是否成功
-        data = response.json()
-        
-        # 检查响应中是否包含期望的数据
-        if 'wea' in data and 'tem_night' in data and 'tem_day' in data:
-            return {
-                'wea': data['wea'],
-                'low': data['tem_night'],
-                'high': data['tem_day']
-            }
-        else:
-            raise ValueError("响应结构中缺少必要的数据")
-    except requests.RequestException as e:
-        print(f"获取天气信息失败: {e}")
-        return None
 def get_count():
   delta = today - datetime.strptime(start_date, "%Y-%m-%d")
   return delta.days
