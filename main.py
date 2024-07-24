@@ -18,12 +18,35 @@ user_id = os.environ["USER_ID"]
 template_id = os.environ["TEMPLATE_ID"]
 
 
-def get_weather():
+def get_weather1():
   url = "http://v1.yiketianqi.com/api?unescape=1&version=v91&appid=&{76955423}appsecret=${xRnKSP2r}&unescape=1&cityid=${101220501}"
   res = requests.get(url).json()
   weather = res['data']['list'][0]
   return weather['weather'], math.floor(weather['temp'])
+def get_weather():
+    app_id = 'xxxxxxxx'  # 你的 appId
+    app_secret = 'xxxxxxxx'  # 你的 appSecret
+    city_id = '101220501'  # 马鞍山的城市 ID
 
+    url = f"http://v1.yiketianqi.com/free/day?appid={76955423}&appsecret={xRnKSP2r}&unescape=1&cityid={101220501}"
+
+    try:
+        response = requests.get(url)
+        response.raise_for_status()  # 检查请求是否成功
+        data = response.json()
+        
+        # 检查响应中是否包含期望的数据
+        if 'wea' in data and 'tem_night' in data and 'tem_day' in data:
+            return {
+                'wea': data['wea'],
+                'low': data['tem_night'],
+                'high': data['tem_day']
+            }
+        else:
+            raise ValueError("响应结构中缺少必要的数据")
+    except requests.RequestException as e:
+        print(f"获取天气信息失败: {e}")
+        return None
 def get_count():
   delta = today - datetime.strptime(start_date, "%Y-%m-%d")
   return delta.days
@@ -47,6 +70,7 @@ def get_random_color():
 client = WeChatClient(app_id, app_secret)
 
 wm = WeChatMessage(client)
+wea, temperature = get_weather()
 data = {"love_days":{"value":get_count()},"birthday_left":{"value":get_birthday()},"words":{"value":get_words(), "color":get_random_color()}}
 res = wm.send_template(user_id, template_id, data)
 print(res)
