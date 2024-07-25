@@ -21,7 +21,7 @@ template_id = os.environ["TEMPLATE_ID"]
 
 # 获取天气信息
 def get_weather1():
-    url = "http://v0.yiketianqi.com/free/v2030?city=&cityid=&adcode=130200000000&appid=76955423&appsecret=xRnKSP2r&lng=&lat=&aqi=&hours="
+    url = "http://v0.yiketianqi.com/free/v2030?city=&cityid=&adcode=320200000000&appid=76955423&appsecret=xRnKSP2r&lng=&lat=&aqi=&hours="
     try:
         res = requests.get(url)
         res.raise_for_status()
