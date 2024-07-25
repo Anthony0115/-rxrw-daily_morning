@@ -27,9 +27,11 @@ def get_weather1():
         res.raise_for_status()
         data = res.json()
         print("API响应:", data)  # 调试输出
-        if 'data' in data and 'list' in data['data']:
-            weather = data['data']['list'][0]
-            return weather['wea'], math.floor(weather['tem'])
+        # 直接从顶层提取数据
+        if 'wea' in data and 'tem' in data:
+            weather = data['wea']
+            temperature = math.floor(float(data['tem']))
+            return weather, temperature
         else:
             print("API响应格式不正确或缺少预期的键")
             return None, None
