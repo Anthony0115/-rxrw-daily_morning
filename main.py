@@ -81,7 +81,7 @@ if wea is not None and temperature is not None:
         "temperature": {"value": temperature},
         "love_days": {"value": get_count()},
         "birthday_left": {"value": get_birthday()},
-        "words": {"value": get_words(), "color": get_random_color()}
+        "words": {"value": f"{get_words()}❤️", "color": get_random_color()}
     }
     res = wm.send_template(user_id, template_id, data)
     print(res)
