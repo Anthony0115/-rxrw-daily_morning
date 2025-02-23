@@ -77,8 +77,8 @@ wea, temperature = get_weather1()
 if wea is not None and temperature is not None:
     # 准备数据并发送模板消息
     data = {
-        "weather": {"value": wea},
-        "temperature": {"value": temperature},
+        # "weather": {"value": wea},
+        # "temperature": {"value": temperature},
         "love_days": {"value": get_count()},
         "birthday_left": {"value": get_birthday()},
         "words": {"value": f"{get_words()}", "color": get_random_color()}
