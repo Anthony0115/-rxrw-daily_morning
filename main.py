@@ -73,10 +73,10 @@ client = WeChatClient(app_id, app_secret)
 wm = WeChatMessage(client)
 
 # 获取天气信息
-#wea, temperature = get_weather1()
+wea, temperature = get_weather1()
 data = {
-        # "weather": {"value": wea},
-        # "temperature": {"value": temperature},
+        "weather": {"value": wea},
+        "temperature": {"value": temperature},
         "love_days": {"value": get_count()},
         "birthday_left": {"value": get_birthday()},
         "words": {"value": f"{get_words()}", "color": get_random_color()}
