@@ -74,7 +74,9 @@ wm = WeChatMessage(client)
 
 # 获取天气信息
 wea, temperature = get_weather1()
-data = {
+if wea is not None and temperature is not None:
+    # 准备数据并发送模板消息
+    data = {
         "weather": {"value": wea},
         "temperature": {"value": temperature},
         "love_days": {"value": get_count()},
@@ -83,3 +85,5 @@ data = {
     }
     res = wm.send_template(user_id, template_id, data)
     print(res)
+else:
+    print("无法获取天气信息，模板消息未发送")
